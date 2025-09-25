@@ -157,3 +157,26 @@ docker exec -it laravel-app php artisan route:cache
 5. Clear old data (optional)
 
 docker volume prune
+
+6. Stop and remove all containers
+
+docker -rm -f $(docker ps -aq)
+
+How to Setup Laravel Breeze (Laravel Default Authentication)?
+-------------------------------------------------------------
+
+1. sudo composer require laravel/breeze --dev
+
+2. php artisan breeze:install
+
+Note: After successfully setup Breeze, all default settings and files would be populated into the project.
+
+3. docker-compose build
+
+4. docker-compose up -d
+
+5. docker exec -it laravel-app php artisan migrate
+   docker exec -it laravel-app php artisan config:cache
+   docker exec -it laravel-app php artisan route:cache
+
+6. 
