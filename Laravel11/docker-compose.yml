@@ -19,7 +19,7 @@ services:
       MYSQL_DATABASE: laravel11
       MYSQL_ROOT_PASSWORD: secret
     ports:
-      - "3312:3307"
+      - "3312:3306"
 
   nginx-eleven:
     image: nginx:alpine
