@@ -173,7 +173,7 @@ Note: After successfully setup Breeze, all default settings and files would be p
 
 3. For Cloud environment, configure the trusted proxies setting as below:
 Laravel 10:
-Browse to app > Http > Middleware > TrustProies.php
+Browse to app > Http > Middleware > TrustProxies.php
 
 Change below line of code:
 protected $proxies = '*';

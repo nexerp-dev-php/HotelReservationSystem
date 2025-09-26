@@ -13,12 +13,13 @@ services:
     image: mysql:8.0
     volumes:
       - db_data11:/var/lib/mysql
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf      
     container_name: laravel11-db
     environment:
       MYSQL_DATABASE: laravel
       MYSQL_ROOT_PASSWORD: secret
     ports:
-      - "3312:3312"
+      - "3312:3307"
 
   nginx:
     image: nginx:alpine
