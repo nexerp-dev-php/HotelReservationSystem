@@ -171,12 +171,45 @@ How to Setup Laravel Breeze (Laravel Default Authentication)?
 
 Note: After successfully setup Breeze, all default settings and files would be populated into the project.
 
-3. docker-compose build
+3. For Cloud environment, configure the trusted proxies setting as below:
 
-4. docker-compose up -d
+To configure trusted proxies, use the trustProxies method in your application's bootstrap/app.php file. This allows you to specify the proxies and headers your application should trust. For example:
 
-5. docker exec -it laravel-app php artisan migrate
+->withMiddleware(function (Middleware $middleware) {
+   $middleware->trustProxies(at: [
+       '192.168.1.1',
+       '10.0.0.0/8',
+   ]);
+});
+
+You can also define which proxy headers should be trusted. For instance, if you're using AWS Elastic Load Balancing, you can configure the headers as follows:
+
+->withMiddleware(function (Middleware $middleware) {
+   $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_AWS_ELB);
+});
+
+For other environments, you can combine multiple headers:
+
+->withMiddleware(function (Middleware $middleware) {
+$middleware->trustProxies(headers:
+Request::HEADER_X_FORWARDED_FOR |
+Request::HEADER_X_FORWARDED_HOST |
+Request::HEADER_X_FORWARDED_PORT |
+Request::HEADER_X_FORWARDED_PROTO
+);
+});
+
+If you're using cloud providers like AWS or other environments where proxy IPs are dynamic, you can trust all proxies by using '*':
+
+->withMiddleware(function (Middleware $middleware) {
+   $middleware->trustProxies(at: '*');
+});
+
+4. docker-compose build
+
+5. docker-compose up -d
+
+6. docker exec -it laravel-app php artisan migrate
    docker exec -it laravel-app php artisan config:cache
    docker exec -it laravel-app php artisan route:cache
 
-6. 
