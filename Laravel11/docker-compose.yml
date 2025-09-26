@@ -1,5 +1,5 @@
 services:
-  app:
+  app-eleven:
     build:
       context: .
       dockerfile: Dockerfile
@@ -7,21 +7,21 @@ services:
     volumes:
       - .:/var/www
     depends_on:
-      - db
+      - db-eleven
 
-  db:
+  db-eleven:
     image: mysql:8.0
     volumes:
       - db_data11:/var/lib/mysql
       - ./custom.cnf:/etc/mysql/conf.d/custom.cnf      
     container_name: laravel11-db
     environment:
-      MYSQL_DATABASE: laravel
+      MYSQL_DATABASE: laravel11
       MYSQL_ROOT_PASSWORD: secret
     ports:
       - "3312:3307"
 
-  nginx:
+  nginx-eleven:
     image: nginx:alpine
     container_name: laravel11-nginx
     ports:
@@ -30,6 +30,6 @@ services:
       - .:/var/www
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
-      - app
+      - app-eleven
 volumes:
   db_data11:

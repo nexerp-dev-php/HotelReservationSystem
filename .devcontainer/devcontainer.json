@@ -1,0 +1,8 @@
+{
+  "name": "PHP Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/php:8.2",
+  "features": {
+    "php": "8.2"
+  },
+  "postCreateCommand": "php -v"
+}
