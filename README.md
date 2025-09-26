@@ -172,7 +172,13 @@ How to Setup Laravel Breeze (Laravel Default Authentication)?
 Note: After successfully setup Breeze, all default settings and files would be populated into the project.
 
 3. For Cloud environment, configure the trusted proxies setting as below:
+Laravel 10:
+Browse to app > Http > Middleware > TrustProies.php
 
+Change below line of code:
+protected $proxies = '*';
+
+Laravel 11 and above:
 To configure trusted proxies, use the trustProxies method in your application's bootstrap/app.php file. This allows you to specify the proxies and headers your application should trust. For example:
 
 ->withMiddleware(function (Middleware $middleware) {
