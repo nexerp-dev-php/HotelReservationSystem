@@ -13,6 +13,7 @@ services:
     image: mysql:8.0
     volumes:
       - db_data_10:/var/lib/mysql
+      - ./custom.cnf:/etc/mysql/conf.d/custom.cnf
     container_name: laravel10-db
     environment:
       MYSQL_DATABASE: laravel
